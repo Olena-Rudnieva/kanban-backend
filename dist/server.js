@@ -1,13 +1,12 @@
-// import mongoose from 'mongoose';
+import mongoose from 'mongoose';
 import app from './app.js';
-const { PORT = 3002 } = process.env;
-app.listen(PORT, () => console.log(`Server running at ${PORT} port`));
-// mongoose
-//   .connect(DB_HOST as string)
-//   .then(() => {
-//     app.listen(PORT, () => console.log(`Server running at ${PORT} port`));
-//   })
-//   .catch((error: any) => {
-//     console.log(error.message);
-//     process.exit(1);
-//   });
+const { DB_HOST, PORT = 3002 } = process.env;
+mongoose
+    .connect(DB_HOST)
+    .then(() => {
+    app.listen(PORT, () => console.log(`Server running at ${PORT} port`));
+})
+    .catch((error) => {
+    console.log(error.message);
+    process.exit(1);
+});
