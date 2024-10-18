@@ -1,8 +1,7 @@
-import 'dotenv/config';
 import HttpError from '../helpers/HttpError.js';
-import ctrlWrapper from '../decorators/ctrlWrapper.js';
+import ctrlWrapper from '../helpers/ctrlWrapper.js';
 
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response } from 'express';
 import { Board } from '../models/board.js';
 
 const getAll = async (req: Request, res: Response) => {
@@ -24,11 +23,7 @@ const addBoard = async (req: Request, res: Response) => {
   res.status(201).json(result);
 };
 
-const updateBoardById = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const updateBoardById = async (req: Request, res: Response) => {
   const { id } = req.params;
   const result = await Board.findByIdAndUpdate(id, req.body);
 
@@ -38,11 +33,7 @@ const updateBoardById = async (
   res.json(result);
 };
 
-const deleteBoardByID = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const deleteBoardByID = async (req: Request, res: Response) => {
   const { id } = req.params;
   const result = await Board.findByIdAndDelete(id);
 

@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import logger from 'morgan';
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response } from 'express';
 import 'dotenv/config';
 import boardsRouter from './routes/boardsRouter.js';
 
@@ -24,11 +24,9 @@ interface CustomError extends Error {
   status?: number;
 }
 
-app.use(
-  (err: CustomError, req: Request, res: Response, next: NextFunction): void => {
-    const { status = 500, message = 'Server error' } = err;
-    res.status(status).json({ message });
-  }
-);
+app.use((err: CustomError, req: Request, res: Response): void => {
+  const { status = 500, message = 'Server error' } = err;
+  res.status(status).json({ message });
+});
 
 export default app;

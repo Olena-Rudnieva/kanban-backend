@@ -1,6 +1,5 @@
-import 'dotenv/config';
 import HttpError from '../helpers/HttpError.js';
-import ctrlWrapper from '../decorators/ctrlWrapper.js';
+import ctrlWrapper from '../helpers/ctrlWrapper.js';
 import { Request, Response } from 'express';
 import { Board } from '../models/board.js';
 
